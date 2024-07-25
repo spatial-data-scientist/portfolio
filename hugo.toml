@@ -1,7 +1,7 @@
 baseURL = 'https://github.com/spatial-data-scientist/portfolio'
 languageCode = 'en-us'
 title = 'Elias Haglund Portfolio'
-theme = 'tailbliss'
+theme = 'toha'
 
 [params]
   description = "A brief description of my site"
