@@ -1,3 +1,9 @@
 [submodule "themes/personal-web"]
 	path = themes/personal-web
 	url = https://github.com/bjacquemet/personal-web.git
+[submodule "themes/themes/hugo-portfolio"]
+	path = themes/themes/hugo-portfolio
+	url = https://github.com/maheenwaris/hugo-portfolio.git
+[submodule "themes/themes/piko"]
+	path = themes/themes/piko
+	url = https://github.com/heksagonnet/piko.git
