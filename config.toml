@@ -1,0 +1,7 @@
+baseURL = 'https://github.com/spatial-data-scientist/portfolio'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+theme = 'personal-web'
+
+[params]
+  description = "A brief description of my site"
