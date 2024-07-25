@@ -15,6 +15,7 @@
     "@popperjs/core": "^2.11.8",
     "autoprefixer": "^10.4.19",
     "bootstrap": "^5.3.3",
+    "deck.gl": "^9.0.24",
     "feather-icons": "^4.29.2",
     "filterizr": "^2.2.4",
     "fuse.js": "^7.0.0",
