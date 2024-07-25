@@ -7,3 +7,34 @@
 [submodule "themes/themes/piko"]
 	path = themes/themes/piko
 	url = https://github.com/heksagonnet/piko.git
+[submodule "themes/tailbliss"]
+	path = themes/tailbliss
+	url = https://github.com/nusserstudios/tailbliss.git
+[submodule "themes/aafu"]
+    path = themes/aafu
+    url = https://github.com/aafu/aafu.git
+[submodule "themes/bridget"]
+    path = themes/bridget
+    url = https://github.com/pacifico/bridget.git
+[submodule "themes/hugo-blox-builder"]
+    path = themes/hugo-blox-builder
+    url = https://github.com/hugo-blox/hugo-blox-builder.git
+[submodule "themes/hugo-developer-portfolio"]
+    path = themes/hugo-developer-portfolio
+    url = https://github.com/hugo-developer/hugo-developer-portfolio.git
+[submodule "themes/hugo-story"]
+    path = themes/hugo-story
+    url = https://github.com/hugo-story/hugo-story.git
+[submodule "themes/hugo-theme-doors"]
+    path = themes/hugo-theme-doors
+    url = https://github.com/hugo-theme-doors/hugo-theme-doors.git
+[submodule "themes/lightbi-hugo"]
+    path = themes/lightbi-hugo
+    url = https://github.com/lightbi/lightbi-hugo.git
+[submodule "themes/roxo-hugo"]
+    path = themes/roxo-hugo
+    url = https://github.com/roxo-hugo/roxo-hugo.git
+[submodule "themes/toha"]
+    path = themes/toha
+    url = https://github.com/toha/toha.git
+
