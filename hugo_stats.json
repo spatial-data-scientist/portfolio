@@ -1,7 +1,51 @@
 {
   "htmlElements": {
-    "tags": null,
-    "classes": null,
-    "ids": null
+    "tags": [
+      "a",
+      "article",
+      "body",
+      "div",
+      "footer",
+      "h1",
+      "h2",
+      "head",
+      "header",
+      "html",
+      "li",
+      "link",
+      "meta",
+      "nav",
+      "noscript",
+      "p",
+      "script",
+      "section",
+      "span",
+      "title",
+      "ul"
+    ],
+    "classes": [
+      "align-center",
+      "alt",
+      "copyright",
+      "icons",
+      "inner",
+      "is-preload",
+      "landing",
+      "menuToggle",
+      "more",
+      "scrolly",
+      "special",
+      "style5",
+      "wrapper"
+    ],
+    "ids": [
+      "banner",
+      "footer",
+      "header",
+      "main",
+      "menu",
+      "nav",
+      "page-wrapper"
+    ]
   }
 }
