@@ -1,53 +1,7 @@
 {
   "htmlElements": {
-    "tags": [
-      "body",
-      "button",
-      "div",
-      "form",
-      "h1",
-      "h3",
-      "h5",
-      "head",
-      "html",
-      "input",
-      "link",
-      "meta",
-      "p",
-      "script",
-      "textarea",
-      "title"
-    ],
-    "classes": [
-      "btn",
-      "col-md-12",
-      "contact",
-      "contactbtn",
-      "contactbtnmain",
-      "contacthead",
-      "contacthead1",
-      "contactinput",
-      "contactmain",
-      "container",
-      "container-fluid",
-      "footer",
-      "footer2",
-      "form-control",
-      "heading",
-      "heading1",
-      "heading2",
-      "heading3",
-      "m-0",
-      "mb-2",
-      "p-0",
-      "pb-4",
-      "portionmain"
-    ],
-    "ids": [
-      "content",
-      "email",
-      "message",
-      "name"
-    ]
+    "tags": null,
+    "classes": null,
+    "ids": null
   }
 }

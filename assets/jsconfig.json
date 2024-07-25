@@ -3,7 +3,7 @@
   "baseUrl": ".",
   "paths": {
    "*": [
-    "..\\themes\\toha\\assets\\*"
+    "..\\themes\\up-business-theme\\assets\\*"
    ]
   }
  }

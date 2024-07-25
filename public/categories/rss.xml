@@ -1,0 +1,73 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"  xml:lang="en-us"  xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        
+            
+
+            
+                
+            
+
+            
+                <link href="https://github.com/spatial-data-scientist/portfolio/categories/" rel="self" type="text/html"/>
+            
+        
+            
+
+            
+
+            
+                <link href="https://github.com/spatial-data-scientist/portfolio/categories/rss.xml" rel="alternate" type="application/rss+xml"/>
+            
+        
+
+        
+
+        
+
+        <description>Recent content</description>
+
+        
+            <language>en-us</language>
+        
+
+        
+
+        <link>https://github.com/spatial-data-scientist/portfolio/categories/</link>
+
+        
+
+        <title>Categories · Elias Haglund Portfolio</title>
+
+        
+
+        
+    </channel>
+</rss>
