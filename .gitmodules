@@ -38,3 +38,30 @@
     path = themes/toha
     url = https://github.com/hugo-toha/toha.git
 
+[submodule "port-hugo"]
+	path = port-hugo
+	url = https://github.com/tylerjlawson/port-hugo.git
+[submodule "hugo-universal-theme"]
+	path = hugo-universal-theme
+	url = https://github.com/devcows/hugo-universal-theme.git
+[submodule "osprey-delight"]
+	path = osprey-delight
+	url = https://github.com/kdevo/osprey-delight.git
+[submodule "spectral"]
+	path = spectral
+	url = https://github.com/sbruder/spectral.git
+[submodule "hugo-resume"]
+	path = hugo-resume
+	url = https://github.com/eddiewebb/hugo-resume.git
+[submodule "hugo-theme-w3css-basic"]
+	path = hugo-theme-w3css-basic
+	url = https://github.com/it-gro/hugo-theme-w3css-basic.git
+[submodule "paige"]
+	path = paige
+	url = https://github.com/willfaught/paige.git
+[submodule "hugo-profile"]
+	path = hugo-profile
+	url = https://github.com/gurusabarish/hugo-profile.git
+[submodule "up-business-theme"]
+	path = up-business-theme
+	url = https://gitlab.com/writeonlyhugo/up-business-theme.git
