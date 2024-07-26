@@ -330,11 +330,6 @@
                     }
                 });
 
-                // Remove or comment out the zoom to location functionality
-                // viewer.camera.flyTo({
-                //     destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, 10000),
-                //     duration: 3
-                // });
             }
 
             // Initial weather update
@@ -343,15 +338,15 @@
             // Update weather every 1 second to maintain the 60 requests per minute rate
             setInterval(updateWeather, 1000);
 
-            // Add Precipitation Weather Tile Layer
-            viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-                url: 'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=' + apiKey
-            }));
+            // // Add Precipitation Weather Tile Layer
+            // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+            //     url: 'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=' + apiKey
+            // }));
 
-            // Add Air Quality Tile Layer
-            viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-                url: 'https://tile.openweathermap.org/map/air_quality/{z}/{x}/{y}.png?appid=' + apiKey
-            }));
+            // // Add Air Quality Tile Layer
+            // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+            //     url: 'https://tile.openweathermap.org/map/air_quality/{z}/{x}/{y}.png?appid=' + apiKey
+            // }));
 
             // Add Cloud Coverage Tile Layer
             viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
