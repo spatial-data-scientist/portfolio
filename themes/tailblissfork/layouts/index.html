@@ -273,16 +273,18 @@
     </div>
     {{ end }}
 <!-- Initialize Cesium and handle weather data -->
-<script>
+ <!-- Cesium Initialization Script -->
+ <script>
     document.addEventListener("DOMContentLoaded", function() {
         if (typeof Cesium !== 'undefined') {
-            // Initialize Cesium Viewer
+            Cesium.Ion.defaultAccessToken = 'YOUR_CESIUM_ION_ACCESS_TOKEN'; // Replace with your actual Cesium Ion access token
+
             var viewer = new Cesium.Viewer('cesiumContainer', {
                 terrainProvider: Cesium.createWorldTerrain()
             });
 
             // Replace this with your OpenWeatherMap API key
-            const apiKey = '1089f9075a06068ca4098f441331e096';
+            const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY'; // Replace with your actual OpenWeatherMap API key
             const cityName = 'New York'; // Change this to the city you want
             const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
 
