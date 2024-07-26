@@ -279,15 +279,20 @@
   <script>
     document.addEventListener("DOMContentLoaded", function() {
         if (typeof Cesium !== 'undefined') {
-            Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwYjdkOWVkMy1kN2IwLTQyYjktYTU3ZC00ZTA2ZGIxOWVmM2YiLCJpZCI6MjI3ODkyLCJpYXQiOjE3MjE5ODYyMzl9.TYwKP84KXjWc-ovn9jX1hs_bP6AUQuLeC_qkWrfqtAY'; // Replace with your actual Cesium Ion access token
+            Cesium.Ion.defaultAccessToken = 'your_access_token_here'; // Replace with your actual Cesium Ion access token
 
             var viewer = new Cesium.Viewer('cesiumContainer', {
                 terrainProvider: Cesium.createWorldTerrain(),
                 scene3DOnly: true // Optional: for a better 3D view without 2D controls
             });
 
+            // Create and configure a custom canvas if needed
+            var canvas = document.createElement('canvas');
+            canvas.willReadFrequently = true; // This will optimize readback performance for the canvas
+            // You can then use this canvas for your custom drawing or image processing
+
             // Replace this with your OpenWeatherMap API key
-            const apiKey = '8ada7d5f315a70d1223e3926f13cf989'; // Replace with your actual OpenWeatherMap API key
+            const apiKey = 'your_api_key_here'; // Replace with your actual OpenWeatherMap API key
 
             // Add Cloud Coverage Tile Layer
             viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
@@ -304,18 +309,11 @@
             // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
             //     url: 'https://tile.openweathermap.org/map/air_quality/{z}/{x}/{y}.png?appid=' + apiKey
             // }));
-
-            // Optional: Adjust base layer visibility if needed
-            // viewer.imageryLayers.get(0).show = true;  // Ensure the first layer (Cloud Coverage) is visible
-            // viewer.imageryLayers.get(1).show = true;  // Ensure the second layer (Precipitation) is visible (if used)
-            // viewer.imageryLayers.get(2).show = true;  // Ensure the third layer (Air Quality) is visible (if used)
-
         } else {
             console.error('Cesium failed to load');
         }
     });
 </script>
-
 
 </main>
 {{ end }}
