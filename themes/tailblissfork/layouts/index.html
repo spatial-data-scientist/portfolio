@@ -327,11 +327,11 @@
                     }
                 });
 
-                // Zoom to the weather location
-                viewer.camera.flyTo({
-                    destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, 10000),
-                    duration: 3
-                });
+                // Remove or comment out the zoom to location functionality
+                // viewer.camera.flyTo({
+                //     destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, 10000),
+                //     duration: 3
+                // });
             }
 
             // Initial weather update
@@ -356,9 +356,9 @@
             }));
 
             // Optional: Adjust base layer visibility if needed
-            viewer.imageryLayers.get(0).show = true;  // Ensure the first layer is visible
-            viewer.imageryLayers.get(1).show = true;  // Ensure the second layer is visible
-            viewer.imageryLayers.get(2).show = true;  // Ensure the third layer (cloud coverage) is visible
+            viewer.imageryLayers.get(0).show = true;  // Ensure the first layer (Precipitation) is visible
+            viewer.imageryLayers.get(1).show = true;  // Ensure the second layer (Air Quality) is visible
+            viewer.imageryLayers.get(2).show = true;  // Ensure the third layer (Cloud Coverage) is visible
         } else {
             console.error('Cesium failed to load');
         }
