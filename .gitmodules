@@ -65,3 +65,6 @@
 [submodule "up-business-theme"]
 	path = up-business-theme
 	url = https://gitlab.com/writeonlyhugo/up-business-theme.git
+[submodule "tailblissfork"]
+	path = tailblissfork
+	url = https://github.com/spatial-data-scientist/tailblissfork.git
