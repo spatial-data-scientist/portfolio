@@ -279,7 +279,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function() {
         if (typeof Cesium !== 'undefined') {
-            Cesium.Ion.defaultAccessToken = 'your_access_token_here'; // Replace with your actual Cesium Ion access token
+            Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwYjdkOWVkMy1kN2IwLTQyYjktYTU3ZC00ZTA2ZGIxOWVmM2YiLCJpZCI6MjI3ODkyLCJpYXQiOjE3MjE5ODYyMzl9.TYwKP84KXjWc-ovn9jX1hs_bP6AUQuLeC_qkWrfqtAY'; // Replace with your actual Cesium Ion access token
 
             var viewer = new Cesium.Viewer('cesiumContainer', {
                 terrainProvider: Cesium.createWorldTerrain(),
@@ -292,12 +292,25 @@
             // You can then use this canvas for your custom drawing or image processing
 
             // Replace this with your OpenWeatherMap API key
-            const apiKey = 'your_api_key_here'; // Replace with your actual OpenWeatherMap API key
+            const apiKey = '8ada7d5f315a70d1223e3926f13cf989'; // Replace with your actual OpenWeatherMap API key
 
-            // Add Cloud Coverage Tile Layer
-            viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-                url: 'https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=' + apiKey
-            }));
+            // Function to add Cloud Coverage Tile Layer
+            function addCloudLayer() {
+                viewer.imageryLayers.removeAll(); // Remove all existing layers
+                viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+                    url: 'https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=' + apiKey
+                }));
+            }
+
+            // Initial call to add the Cloud Coverage Tile Layer
+            addCloudLayer();
+
+            // Time interval in minutes
+            const intervalMinutes = 10;
+            const intervalMilliseconds = intervalMinutes * 60 * 1000; // Convert to milliseconds
+
+            // Set interval to update the layer every 10 minutes
+            setInterval(addCloudLayer, intervalMilliseconds);
 
             // Optional: Add other weather-related tile layers
             // Add Precipitation Weather Tile Layer
@@ -314,6 +327,7 @@
         }
     });
 </script>
+
 
 </main>
 {{ end }}
