@@ -274,7 +274,8 @@
     {{ end }}
 <!-- Initialize Cesium and handle weather data -->
  <!-- Cesium Initialization Script -->
- <script>
+ <!-- Initialize Cesium and handle weather data -->
+<script>
     document.addEventListener("DOMContentLoaded", function() {
         if (typeof Cesium !== 'undefined') {
             Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwYjdkOWVkMy1kN2IwLTQyYjktYTU3ZC00ZTA2ZGIxOWVmM2YiLCJpZCI6MjI3ODkyLCJpYXQiOjE3MjE5ODYyMzl9.TYwKP84KXjWc-ovn9jX1hs_bP6AUQuLeC_qkWrfqtAY'; // Replace with your actual Cesium Ion access token
@@ -289,68 +290,69 @@
             const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
 
             function updateWeather() {
-            fetch(weatherApiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const temperature = data.main.temp;
-                    const weatherDescription = data.weather[0].description;
-                    const latitude = data.coord.lat;
-                    const longitude = data.coord.lon;
+                fetch(weatherApiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const temperature = data.main.temp;
+                        const weatherDescription = data.weather[0].description;
+                        const latitude = data.coord.lat;
+                        const longitude = data.coord.lon;
 
-                    updateWeatherInCesium(latitude, longitude, temperature, weatherDescription);
-                })
-                .catch(error => console.error('Error fetching weather data:', error));
+                        updateWeatherInCesium(latitude, longitude, temperature, weatherDescription);
+                    })
+                    .catch(error => console.error('Error fetching weather data:', error));
+            }
+
+            function updateWeatherInCesium(latitude, longitude, temperature, weatherDescription) {
+                // Remove existing weather entities
+                viewer.entities.removeAll();
+
+                // Add new weather data
+                viewer.entities.add({
+                    position: Cesium.Cartesian3.fromDegrees(longitude, latitude),
+                    // Remove or comment out billboard section if not needed
+                    // billboard: {
+                    //     image: 'https://your-domain.com/path/to/weather-icon.png', // Ensure this path is HTTPS
+                    //     width: 32,
+                    //     height: 32
+                    // },
+                    label: {
+                        text: `${temperature}°C\n${weatherDescription}`,
+                        font: '14px Helvetica',
+                        verticalOrigin: Cesium.VerticalOrigin.BOTTOM
+                    }
+                });
+
+                // Zoom to the weather location
+                viewer.camera.flyTo({
+                    destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, 10000),
+                    duration: 3
+                });
+            }
+
+            // Initial weather update
+            updateWeather();
+
+            // Update weather every 10 minutes
+            setInterval(updateWeather, 10 * 60 * 1000);
+
+            // Add Precipitation Weather Tile Layer
+            viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+                url: 'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=' + apiKey
+            }));
+
+            // Add Air Quality Tile Layer
+            viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+                url: 'https://tile.openweathermap.org/map/air_quality/{z}/{x}/{y}.png?appid=' + apiKey
+            }));
+
+            // Optional: Adjust base layer visibility if needed
+            viewer.imageryLayers.get(0).show = true;  // Ensure the first layer is visible
+            viewer.imageryLayers.get(1).show = true;  // Ensure the second layer is visible
+        } else {
+            console.error('Cesium failed to load');
         }
-
-        function updateWeatherInCesium(latitude, longitude, temperature, weatherDescription) {
-            // Remove existing weather entities
-            viewer.entities.removeAll();
-
-            // Add new weather data
-            viewer.entities.add({
-                position: Cesium.Cartesian3.fromDegrees(longitude, latitude),
-                billboard: {
-                    image: 'path/to/weather-icon.png', // Update with the path to your weather icon
-                    width: 32,
-                    height: 32
-                },
-                label: {
-                    text: `${temperature}°C\n${weatherDescription}`,
-                    font: '14px Helvetica',
-                    verticalOrigin: Cesium.VerticalOrigin.BOTTOM
-                }
-            });
-
-            // Zoom to the weather location
-            viewer.camera.flyTo({
-                destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, 10000),
-                duration: 3
-            });
-        }
-
-        // Initial weather update
-        updateWeather();
-
-        // Update weather every 10 minutes
-        setInterval(updateWeather, 10 * 60 * 1000);
-
-        // Add Precipitation Weather Tile Layer
-        viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-            url : 'http://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=' + apiKey
-        }));
-
-        // Add Air Quality Tile Layer
-        viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-            url : 'http://tile.openweathermap.org/map/air_quality/{z}/{x}/{y}.png?appid=' + apiKey
-        }));
-
-        // Optional: Adjust base layer visibility if needed
-        viewer.imageryLayers.get(0).show = true;  // Ensure the first layer is visible
-        viewer.imageryLayers.get(1).show = true;  // Ensure the second layer is visible
-    } else {
-        console.error('Cesium failed to load');
-    }
-});
+    });
 </script>
 </main>
 {{ end }}
