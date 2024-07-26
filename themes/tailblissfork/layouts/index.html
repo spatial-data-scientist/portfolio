@@ -281,7 +281,10 @@
             Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwYjdkOWVkMy1kN2IwLTQyYjktYTU3ZC00ZTA2ZGIxOWVmM2YiLCJpZCI6MjI3ODkyLCJpYXQiOjE3MjE5ODYyMzl9.TYwKP84KXjWc-ovn9jX1hs_bP6AUQuLeC_qkWrfqtAY'; // Replace with your actual Cesium Ion access token
 
             var viewer = new Cesium.Viewer('cesiumContainer', {
-                terrainProvider: Cesium.createWorldTerrain()
+                terrainProvider: Cesium.createWorldTerrain(),
+                // Set the initial view to a global view
+                scene3DOnly: true, // Optional: for a better 3D view without 2D controls
+                selectedImageryProviderViewModel: null // Optional: if you have any base layer preferences
             });
 
             // Replace this with your OpenWeatherMap API key
@@ -364,6 +367,7 @@
         }
     });
 </script>
+
 
 </main>
 {{ end }}
