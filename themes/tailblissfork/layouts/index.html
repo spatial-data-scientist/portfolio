@@ -272,6 +272,69 @@
         </div>
     </div>
     {{ end }}
+<!-- Initialize Cesium and handle weather data -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof Cesium !== 'undefined') {
+            // Initialize Cesium Viewer
+            var viewer = new Cesium.Viewer('cesiumContainer', {
+                terrainProvider: Cesium.createWorldTerrain()
+            });
 
+            // Replace this with your OpenWeatherMap API key
+            const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
+            const cityName = 'New York'; // Change this to the city you want
+            const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+
+            function updateWeather() {
+                fetch(weatherApiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const temperature = data.main.temp;
+                        const weatherDescription = data.weather[0].description;
+                        const latitude = data.coord.lat;
+                        const longitude = data.coord.lon;
+
+                        updateWeatherInCesium(latitude, longitude, temperature, weatherDescription);
+                    })
+                    .catch(error => console.error('Error fetching weather data:', error));
+            }
+
+            function updateWeatherInCesium(latitude, longitude, temperature, weatherDescription) {
+                // Remove existing weather entities
+                viewer.entities.removeAll();
+
+                // Add new weather data
+                viewer.entities.add({
+                    position: Cesium.Cartesian3.fromDegrees(longitude, latitude),
+                    billboard: {
+                        image: 'path/to/weather-icon.png', // Update with the path to your weather icon
+                        width: 32,
+                        height: 32
+                    },
+                    label: {
+                        text: `${temperature}°C\n${weatherDescription}`,
+                        font: '14px Helvetica',
+                        verticalOrigin: Cesium.VerticalOrigin.BOTTOM
+                    }
+                });
+
+                // Zoom to the weather location
+                viewer.camera.flyTo({
+                    destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, 10000),
+                    duration: 3
+                });
+            }
+
+            // Initial weather update
+            updateWeather();
+
+            // Update weather every 10 minutes
+            setInterval(updateWeather, 10 * 60 * 1000);
+        } else {
+            console.error('Cesium failed to load');
+        }
+    });
+</script>
 </main>
 {{ end }}
