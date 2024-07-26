@@ -25,7 +25,7 @@
                         {{- with $large.RelPermalink -}}, {{.}} 576w{{- end -}}" src="{{ $hero.RelPermalink }}" width="100%" height="" alt="TailBliss Hero" class="w-full max-w-xl mx-auto rounded-lg" /> -->
                     <!-- Cesium container -->
                     <div id="cesiumContainer" class="w-full max-w-xl mx-auto rounded-lg" style="height: 400px; box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);"></div>
-                    <div id="coordinatesDisplay" class="text-center text-gray-900 dark:text-gray-50 mt-2"></div> 
+                    <div id="coordinatesDisplay" class="text-center text-gray-900 dark:text-gray-50 mt-2"></div>
                 </div>
             </div>
         </div>
@@ -276,7 +276,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             if (typeof Cesium !== 'undefined') {
-                Cesium.Ion.defaultAccessToken = 'your_cesium_ion_access_token'; // Replace with your actual Cesium Ion access token
+                Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYmI2Y2RmYy00ZjlkLTQ1NDEtYTdiOS1iZmUyMDA0YjlhMTkiLCJpZCI6MjI3ODkyLCJpYXQiOjE3MjA3MjU2NTV9.ZkTdcGcJIVoMh1SZulxhAUWx_C-ydOeXxaoxq55Qzeg'; // Replace with your actual Cesium Ion access token
     
                 var viewer = new Cesium.Viewer('cesiumContainer', {
                     terrainProvider: Cesium.createWorldTerrain(),
@@ -286,9 +286,10 @@
                 // Create and configure a custom canvas if needed
                 var canvas = document.createElement('canvas');
                 canvas.willReadFrequently = true; // This will optimize readback performance for the canvas
+                // You can then use this canvas for your custom drawing or image processing
     
                 // Replace this with your OpenWeatherMap API key
-                const apiKey = 'your_openweathermap_api_key'; // Replace with your actual OpenWeatherMap API key
+                const apiKey = '8ada7d5f315a70d1223e3926f13cf989'; // Replace with your actual OpenWeatherMap API key
     
                 // Function to add Cloud Coverage Tile Layer
                 function addCloudLayer() {
@@ -316,32 +317,21 @@
                 // Set interval to update the layer every 10 minutes
                 setInterval(addCloudLayer, intervalMilliseconds);
     
-                // Display coordinates
-                var coordinateDisplay = document.getElementById('coordinateDisplay');
+                // Optional: Add other weather-related tile layers
+                // Add Precipitation Weather Tile Layer
+                // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+                //     url: `https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${apiKey}`
+                // }));
     
-                var scene = viewer.scene;
-                var ellipsoid = scene.globe.ellipsoid;
-                var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
-    
-                handler.setInputAction(function(movement) {
-                    var cartesian = viewer.camera.pickEllipsoid(movement.endPosition, ellipsoid);
-                    if (cartesian) {
-                        var cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-                        var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(6);
-                        var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(6);
-    
-                        coordinateDisplay.innerHTML = 'Coordinates: ' + longitudeString + ', ' + latitudeString;
-                    } else {
-                        coordinateDisplay.innerHTML = 'Coordinates: N/A';
-                    }
-                }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+                // Add Air Quality Tile Layer
+                // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+                //     url: `https://tile.openweathermap.org/map/air_quality/{z}/{x}/{y}.png?appid=${apiKey}`
+                // }));
             } else {
                 console.error('Cesium failed to load');
             }
         });
     </script>
-    
-    
     
 
 
