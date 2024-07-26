@@ -12,6 +12,22 @@
     {{ partial "nav.html" . }}
     {{ block "main" . }}{{ end }}
     {{ partial "footer" . }}
+    <!-- Cesium JavaScript -->
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.97/Build/Cesium/Cesium.js"></script>
+    <!-- Cesium Initialization Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof Cesium !== 'undefined') {
+                Cesium.Ion.defaultAccessToken = 'your-cesium-ion-access-token';
+
+                var viewer = new Cesium.Viewer('cesiumContainer', {
+                    terrainProvider: Cesium.createWorldTerrain()
+                });
+            } else {
+                console.error('Cesium failed to load');
+            }
+        });
+    </script>
 </body>
 
 </html>
