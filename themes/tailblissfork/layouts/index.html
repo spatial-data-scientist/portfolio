@@ -276,23 +276,14 @@
  <!-- Cesium Initialization Script -->
  <!-- Initialize Cesium and handle weather data -->
   <!-- Cesium Initialization Script -->
-  <script>
+  <!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
         if (typeof Cesium !== 'undefined') {
             Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYmI2Y2RmYy00ZjlkLTQ1NDEtYTdiOS1iZmUyMDA0YjlhMTkiLCJpZCI6MjI3ODkyLCJpYXQiOjE3MjA3MjU2NTV9.ZkTdcGcJIVoMh1SZulxhAUWx_C-ydOeXxaoxq55Qzeg'; // Replace with your actual Cesium Ion access token
 
             var viewer = new Cesium.Viewer('cesiumContainer', {
                 terrainProvider: Cesium.createWorldTerrain(),
-                scene3DOnly: true, // Optional: for a better 3D view without 2D controls
-                clockViewModel: new Cesium.ClockViewModel(new Cesium.Clock({
-                    startTime: Cesium.JulianDate.fromDate(new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)), // Start 30 days ago
-                    currentTime: Cesium.JulianDate.fromDate(new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)), // Set current time to start time
-                    stopTime: Cesium.JulianDate.fromDate(new Date(Date.now())), // Stop at current time
-                    clockRange: Cesium.ClockRange.LOOP_STOP, // Loop at the end
-                    clockStep: Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER,
-                    multiplier: 3600, // 1 second of real time = 1 hour of simulation time
-                    shouldAnimate: true // Start animating the clock immediately
-                }))
+                scene3DOnly: true // Optional: for a better 3D view without 2D controls
             });
 
             // Create and configure a custom canvas if needed
@@ -308,11 +299,9 @@
                 // Remove only the specific cloud layer if it exists
                 var layers = viewer.imageryLayers._layers;
                 for (var i = 0; i < layers.length; i++) {
-                    // Check if the layer's URL includes 'tile.openweathermap.org/map/clouds_new'
                     if (layers[i].imageryProvider.url && layers[i].imageryProvider.url.includes('tile.openweathermap.org/map/clouds_new')) {
-                        // Remove the identified cloud layer
                         viewer.imageryLayers.remove(layers[i]);
-                        break; // Exit the loop after removing the layer
+                        break;
                     }
                 }
                 // Add the cloud coverage tile layer
@@ -324,11 +313,11 @@
             // Initial call to add the Cloud Coverage Tile Layer
             addCloudLayer();
 
-            // Time interval in seconds
-            const intervalSeconds = 1.05;
-            const intervalMilliseconds = intervalSeconds * 1000; // Convert to milliseconds
+            // Time interval in minutes
+            const intervalMinutes = 10;
+            const intervalMilliseconds = intervalMinutes * 60 * 1000; // Convert to milliseconds
 
-            // Set interval to update the layer every 1.05 seconds
+            // Set interval to update the layer every 10 minutes
             setInterval(addCloudLayer, intervalMilliseconds);
 
             // Optional: Add other weather-related tile layers
@@ -345,7 +334,7 @@
             console.error('Cesium failed to load');
         }
     });
-</script>
+</script> -->
 
 
 </main>
