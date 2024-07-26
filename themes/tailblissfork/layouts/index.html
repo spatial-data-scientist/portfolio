@@ -275,62 +275,61 @@
     {{ end }}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            if (typeof Cesium !== 'undefined') {
-                Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYmI2Y2RmYy00ZjlkLTQ1NDEtYTdiOS1iZmUyMDA0YjlhMTkiLCJpZCI6MjI3ODkyLCJpYXQiOjE3MjA3MjU2NTV9.ZkTdcGcJIVoMh1SZulxhAUWx_C-ydOeXxaoxq55Qzeg'; // Replace with your actual Cesium Ion access token
-    
-                var viewer = new Cesium.Viewer('cesiumContainer', {
-                    terrainProvider: Cesium.createWorldTerrain(),
-                    scene3DOnly: true // Optional: for a better 3D view without 2D controls
-                });
-    
-                // Create and configure a custom canvas if needed
-                var canvas = document.createElement('canvas');
-                canvas.willReadFrequently = true; // This will optimize readback performance for the canvas
-                // You can then use this canvas for your custom drawing or image processing
-    
-                // Replace this with your OpenWeatherMap API key
-                const apiKey = '8ada7d5f315a70d1223e3926f13cf989'; // Replace with your actual OpenWeatherMap API key
-    
-                // Function to add Cloud Coverage Tile Layer
-                function addCloudLayer() {
-                    // Remove only the specific cloud layer if it exists
-                    var layers = viewer.imageryLayers._layers;
-                    for (var i = 0; i < layers.length; i++) {
-                        if (layers[i].imageryProvider.url && layers[i].imageryProvider.url.includes('tile.openweathermap.org/map/clouds_new')) {
-                            viewer.imageryLayers.remove(layers[i]);
-                            break;
-                        }
-                    }
-                    // Add the cloud coverage tile layer
-                    viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-                        url : `https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${apiKey}`
-                    }));
-                }
-    
-                // Initial call to add the Cloud Coverage Tile Layer
-                addCloudLayer();
-    
-                // Time interval in minutes
-                const intervalMinutes = 10;
-                const intervalMilliseconds = intervalMinutes * 60 * 1000; // Convert to milliseconds
-    
-                // Set interval to update the layer every 10 minutes
-                setInterval(addCloudLayer, intervalMilliseconds);
-    
-                // Optional: Add other weather-related tile layers
-                // Add Precipitation Weather Tile Layer
-                // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-                //     url: `https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${apiKey}`
-                // }));
-    
-                // Add Air Quality Tile Layer
-                // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-                //     url: `https://tile.openweathermap.org/map/air_quality/{z}/{x}/{y}.png?appid=${apiKey}`
-                // }));
-            } else {
-                console.error('Cesium failed to load');
-            }
+    if (typeof Cesium !== 'undefined') {
+        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYmI2Y2RmYy00ZjlkLTQ1NDEtYTdiOS1iZmUyMDA0YjlhMTkiLCJpZCI6MjI3ODkyLCJpYXQiOjE3MjA3MjU2NTV9.ZkTdcGcJIVoMh1SZulxhAUWx_C-ydOeXxaoxq55Qzeg'; // Replace with your actual Cesium Ion access token
+
+        var viewer = new Cesium.Viewer('cesiumContainer', {
+            terrainProvider: Cesium.createWorldTerrain(), // Added for 3D terrain exploration
+            scene3DOnly: true // Optional: for a better 3D view without 2D controls
         });
+
+        // Create and configure a custom canvas if needed
+        var canvas = document.createElement('canvas');
+        canvas.willReadFrequently = true; // This will optimize readback performance for the canvas
+
+        // Replace this with your OpenWeatherMap API key
+        const apiKey = '8ada7d5f315a70d1223e3926f13cf989'; // Replace with your actual OpenWeatherMap API key
+
+        // Function to add Cloud Coverage Tile Layer
+        function addCloudLayer() {
+            // Remove only the specific cloud layer if it exists
+            var layers = viewer.imageryLayers._layers;
+            for (var i = 0; i < layers.length; i++) {
+                if (layers[i].imageryProvider.url && layers[i].imageryProvider.url.includes('tile.openweathermap.org/map/clouds_new')) {
+                    viewer.imageryLayers.remove(layers[i]);
+                    break;
+                }
+            }
+            // Add the cloud coverage tile layer
+            viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+                url : `https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${apiKey}` // Updated with template literal
+            }));
+        }
+
+        // Initial call to add the Cloud Coverage Tile Layer
+        addCloudLayer();
+
+        // Time interval in minutes
+        const intervalMinutes = 10;
+        const intervalMilliseconds = intervalMinutes * 60 * 1000; // Convert to milliseconds
+
+        // Set interval to update the layer every 10 minutes
+        setInterval(addCloudLayer, intervalMilliseconds);
+
+        // Optional: Add other weather-related tile layers
+        // Add Precipitation Weather Tile Layer
+        // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+        //     url: `https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${apiKey}` // Updated with template literal
+        // }));
+
+        // Add Air Quality Tile Layer
+        // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+        //     url: `https://tile.openweathermap.org/map/air_quality/{z}/{x}/{y}.png?appid=${apiKey}` // Updated with template literal
+        // }));
+    } else {
+        console.error('Cesium failed to load');
+    }
+});
     </script>
     
 
