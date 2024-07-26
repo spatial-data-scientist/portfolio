@@ -333,24 +333,25 @@
 
             // Update weather every 10 minutes
             setInterval(updateWeather, 10 * 60 * 1000);
-        } else {
-            console.error('Cesium failed to load');
-        }
-    });
-    // Add Precipitation Weather Tile Layer
-    viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-                url : 'http://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=8ada7d5f315a70d1223e3926f13cf989'
+
+            // Add Precipitation Weather Tile Layer
+            viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+                url: `http://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${apiKey}`
             }));
 
             // Add Air Quality Tile Layer
             viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-                url : 'http://tile.openweathermap.org/map/air_quality/{z}/{x}/{y}.png?appid=8ada7d5f315a70d1223e3926f13cf989'
+                url: `http://tile.openweathermap.org/map/air_quality/{z}/{x}/{y}.png?appid=${apiKey}`
             }));
 
             // Optional: Adjust base layer visibility if needed
             viewer.imageryLayers.get(0).show = true;  // Ensure the first layer is visible
             viewer.imageryLayers.get(1).show = true;  // Ensure the second layer is visible
-        });
+
+        } else {
+            console.error('Cesium failed to load');
+        }
+    });
 </script>
 </main>
 {{ end }}
