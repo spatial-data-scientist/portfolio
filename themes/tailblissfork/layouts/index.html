@@ -284,40 +284,42 @@
                     geocoder: true
                 });
     
+                // Enable depth testing so things behind the terrain disappear
                 viewer.scene.globe.depthTestAgainstTerrain = true;
+    
+                // Add 3D buildings
                 var buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
     
+                // Add event listener for geocoder search completion
                 viewer.geocoder.viewModel.search.beforeExecute.addEventListener(function(e) {
-                    e.cancel = true;
+                    e.cancel = true; // Cancel default fly to behavior
                     
                     viewer.geocoder.viewModel.searchCommand.execute().then(function(result) {
                         if (result && result.length > 0) {
                             var firstResult = result[0];
                             var destination = firstResult.destination;
                             
+                            // Calculate position slightly offset from the center of the location
                             var center = Cesium.Ellipsoid.WGS84.cartesianToCartographic(destination);
                             var longitude = Cesium.Math.toDegrees(center.longitude);
                             var latitude = Cesium.Math.toDegrees(center.latitude);
+                            
+                            // Adjust these values to change the viewing angle and distance
+                            var heightOffset = 1000; // meters above ground
+                            var horizontalOffset = 1000; // meters away from center point
     
-                            // Get the height of terrain at the given longitude and latitude
-                            var promise = Cesium.sampleTerrainMostDetailed(viewer.terrainProvider, [Cesium.Cartographic.fromDegrees(longitude, latitude)]);
-                            Cesium.when(promise, function(updatedPositions) {
-                                var height = updatedPositions[0].height;
-                                var offset = 2000; // Adjust this value to change the camera distance
-    
-                                viewer.camera.flyTo({
-                                    destination: Cesium.Cartesian3.fromDegrees(
-                                        longitude, 
-                                        latitude - 0.03, // Offset to the south for a better view
-                                        height + offset
-                                    ),
-                                    orientation: {
-                                        heading: Cesium.Math.toRadians(0),
-                                        pitch: Cesium.Math.toRadians(-30),
-                                        roll: 0
-                                    },
-                                    duration: 3
-                                });
+                            viewer.camera.flyTo({
+                                destination: Cesium.Cartesian3.fromDegrees(
+                                    longitude - 0.01, // Slight offset for perspective
+                                    latitude - 0.01,
+                                    heightOffset
+                                ),
+                                orientation: {
+                                    heading: Cesium.Math.toRadians(30), // Adjust for desired viewing angle
+                                    pitch: Cesium.Math.toRadians(-30),
+                                    roll: 0.0
+                                },
+                                duration: 3 // Duration of animation in seconds
                             });
                         }
                     });
