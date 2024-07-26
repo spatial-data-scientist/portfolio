@@ -24,17 +24,9 @@
                         {{- with $thumb.RelPermalink -}}{{.}} 400w{{- end -}}
                         {{- with $large.RelPermalink -}}, {{.}} 576w{{- end -}}" src="{{ $hero.RelPermalink }}" width="100%" height="" alt="TailBliss Hero" class="w-full max-w-xl mx-auto rounded-lg" />
                 </div> -->
-                <div class="col-span-6">
-                    <!-- Cesium container -->
-    <div id="cesiumContainer" style="
-    width: 100%; /* Full width of the parent column */
-    max-width: 576px; /* Matches the original image's max width */
-    margin-left: auto; /* Centered horizontally */
-    margin-right: auto; /* Centered horizontally */
-    height: 400px; /* Height matches the original image */
-    border-radius: 0.75rem; /* Rounded corners */
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1); /* Subtle shadow */
-"></div>           
+                <!-- Cesium container -->
+                <div id="cesiumContainer" style="width: 100%; height: 400px; max-width: 100%; margin: 0 auto; border-radius: 0.75rem; box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);"></div>     
+                <div class="col-span-6">           
                 </div>
             </div>
         </div>
