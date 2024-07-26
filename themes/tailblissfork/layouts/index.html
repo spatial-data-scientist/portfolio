@@ -275,89 +275,41 @@
 <!-- Initialize Cesium and handle weather data -->
  <!-- Cesium Initialization Script -->
  <!-- Initialize Cesium and handle weather data -->
- <script>
-    <script src="https://cesium.com/downloads/cesiumjs/releases/1.97/Build/Cesium/Cesium.js"></script>
+  <!-- Cesium Initialization Script -->
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
         if (typeof Cesium !== 'undefined') {
             Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwYjdkOWVkMy1kN2IwLTQyYjktYTU3ZC00ZTA2ZGIxOWVmM2YiLCJpZCI6MjI3ODkyLCJpYXQiOjE3MjE5ODYyMzl9.TYwKP84KXjWc-ovn9jX1hs_bP6AUQuLeC_qkWrfqtAY'; // Replace with your actual Cesium Ion access token
 
             var viewer = new Cesium.Viewer('cesiumContainer', {
                 terrainProvider: Cesium.createWorldTerrain(),
-                // Set the initial view to a global view
-                scene3DOnly: true, // Optional: for a better 3D view without 2D controls
-                selectedImageryProviderViewModel: null // Optional: if you have any base layer preferences
+                scene3DOnly: true // Optional: for a better 3D view without 2D controls
             });
 
             // Replace this with your OpenWeatherMap API key
             const apiKey = '8ada7d5f315a70d1223e3926f13cf989'; // Replace with your actual OpenWeatherMap API key
-            const cityName = 'Lund'; // Change this to the city you want
-            const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
-
-            let lastUpdateTime = 0;
-
-            function updateWeather() {
-                const currentTime = Date.now();
-                const timeSinceLastUpdate = currentTime - lastUpdateTime;
-
-                // Only fetch weather data if at least 1 second has passed since the last update
-                if (timeSinceLastUpdate >= 1000) {
-                    lastUpdateTime = currentTime;
-
-                    fetch(weatherApiUrl)
-                        .then(response => response.json())
-                        .then(data => {
-                            const temperature = data.main.temp;
-                            const weatherDescription = data.weather[0].description;
-                            const latitude = data.coord.lat;
-                            const longitude = data.coord.lon;
-
-                            updateWeatherInCesium(latitude, longitude, temperature, weatherDescription);
-                        })
-                        .catch(error => console.error('Error fetching weather data:', error));
-                }
-            }
-
-            function updateWeatherInCesium(latitude, longitude, temperature, weatherDescription) {
-                // Remove existing weather entities
-                viewer.entities.removeAll();
-
-                // Add new weather data
-                viewer.entities.add({
-                    position: Cesium.Cartesian3.fromDegrees(longitude, latitude),
-                    label: {
-                        text: `${temperature}°C\n${weatherDescription}`,
-                        font: '14px Helvetica',
-                        verticalOrigin: Cesium.VerticalOrigin.BOTTOM
-                    }
-                });
-
-            }
-
-            // Initial weather update
-            updateWeather();
-
-            // Update weather every 1 second to maintain the 60 requests per minute rate
-            setInterval(updateWeather, 1000);
-
-            // // Add Precipitation Weather Tile Layer
-            // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-            //     url: 'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=' + apiKey
-            // }));
-
-            // // Add Air Quality Tile Layer
-            // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
-            //     url: 'https://tile.openweathermap.org/map/air_quality/{z}/{x}/{y}.png?appid=' + apiKey
-            // }));
 
             // Add Cloud Coverage Tile Layer
             viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
                 url: 'https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=' + apiKey
             }));
 
+            // Optional: Add other weather-related tile layers
+            // Add Precipitation Weather Tile Layer
+            // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+            //     url: 'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=' + apiKey
+            // }));
+
+            // Add Air Quality Tile Layer
+            // viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
+            //     url: 'https://tile.openweathermap.org/map/air_quality/{z}/{x}/{y}.png?appid=' + apiKey
+            // }));
+
             // Optional: Adjust base layer visibility if needed
-            viewer.imageryLayers.get(0).show = true;  // Ensure the first layer (Precipitation) is visible
-            viewer.imageryLayers.get(1).show = true;  // Ensure the second layer (Air Quality) is visible
-            viewer.imageryLayers.get(2).show = true;  // Ensure the third layer (Cloud Coverage) is visible
+            // viewer.imageryLayers.get(0).show = true;  // Ensure the first layer (Cloud Coverage) is visible
+            // viewer.imageryLayers.get(1).show = true;  // Ensure the second layer (Precipitation) is visible (if used)
+            // viewer.imageryLayers.get(2).show = true;  // Ensure the third layer (Air Quality) is visible (if used)
+
         } else {
             console.error('Cesium failed to load');
         }
