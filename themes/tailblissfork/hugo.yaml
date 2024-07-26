@@ -36,7 +36,7 @@ markup:
     parser:
       attribute:
         block: false
-        title: true
+        title: false
       autoHeadingID: true
       autoHeadingIDType: github
       wrapStandAloneImageWithinParagraph: true
