@@ -36,7 +36,7 @@ markup:
     parser:
       attribute:
         block: false
-        title: false
+        title: true
       autoHeadingID: true
       autoHeadingIDType: github
       wrapStandAloneImageWithinParagraph: true
@@ -49,7 +49,7 @@ params:
   author: Nusser Studios
   authorimage: ../assets/images/global/author.webp
   og_image: /images/tailbliss-cover.png
-  moto: "Super Fast, and Flexible"
+  moto: "Landscape architect | GIS Analyst"
   description: "A Hugo theme built with love, using TailwindCSS 3, Alpine.JS, and Hugo Pipes. Images are optimized for use with Hugo Pipes for WebP format."
   disable_theme_toggle: false
   disable_stay_uptodate: false
