@@ -15,7 +15,7 @@
                     </p>
                 </div>
                 <div class="col-span-6">
-                    <!-- {{ $hero := resources.GetMatch "images/pages/our-mission.png" }} THIS IS THE IMAGE I WANT TO REPLACE 
+                    <!-- {{ $hero := resources.GetMatch "images/pages/our-mission.png" }} THIS IS THE IMAGE I WANT TO REPLACE WITH CESIUM CONTAINER IN EXACT SAME POSITION
 
                     {{ $thumb := ($hero.Fill "400x400 webp q90") }}
                     {{ $large := ($hero.Fill "576x576 webp q90") }}
@@ -24,7 +24,7 @@
                         {{- with $thumb.RelPermalink -}}{{.}} 400w{{- end -}}
                         {{- with $large.RelPermalink -}}, {{.}} 576w{{- end -}}" src="{{ $hero.RelPermalink }}" width="100%" height="" alt="TailBliss Hero" class="w-full max-w-xl mx-auto rounded-lg" /> -->
                         <!-- Cesium container -->
-                id="cesiumContainer" style="width: 100%; height: 400px; max-width: 100%; margin: 0 auto; border-radius: 0.75rem; box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);">   
+                        <div id="cesiumContainer" class="w-full max-w-xl mx-auto rounded-lg" style="height: 400px; box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);"></div>
 
                 </div>
             </div>
