@@ -1,10 +1,10 @@
 baseURL = 'https://github.com/spatial-data-scientist/portfolio'
 languageCode = 'en-us'
-title = 'Elias Haglund Portfolio'
+title = "Elias Haglund's Portfolio"
 theme = 'tailblissfork'
 
 [params]
-  description = "A brief description of my site"
+  description = "Welcome to my portfolio website!"
 
 [build]
   writeStats = true
