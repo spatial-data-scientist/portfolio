@@ -277,20 +277,20 @@
         document.addEventListener("DOMContentLoaded", function() {
             if (typeof Cesium !== 'undefined') {
                 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYmI2Y2RmYy00ZjlkLTQ1NDEtYTdiOS1iZmUyMDA0YjlhMTkiLCJpZCI6MjI3ODkyLCJpYXQiOjE3MjA3MjU2NTV9.ZkTdcGcJIVoMh1SZulxhAUWx_C-ydOeXxaoxq55Qzeg';
-            
+        
                 var viewer = new Cesium.Viewer('cesiumContainer', {
                     terrainProvider: Cesium.createWorldTerrain(),
                     scene3DOnly: true,
                     baseLayerPicker: false,
                     geocoder: true
                 });
-            
+        
                 // Enable depth testing so things behind the terrain disappear
                 viewer.scene.globe.depthTestAgainstTerrain = true;
-            
+        
                 // Add 3D buildings
                 var buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
-            
+        
                 // Set initial view to a 3D perspective (e.g., New York City)
                 viewer.camera.setView({
                     destination: Cesium.Cartesian3.fromDegrees(-74.006, 40.7128, 1000),
@@ -300,9 +300,9 @@
                         roll: 0
                     }
                 });
-            
+        
                 const apiKey = '8ada7d5f315a70d1223e3926f13cf989';
-            
+        
                 function addCloudLayer() {
                     // Remove only the specific cloud layer if it exists
                     var layers = viewer.imageryLayers._layers;
@@ -318,17 +318,17 @@
                     }));
                     cloudLayer.alpha = 0.5; // Adjust this value between 0 and 1 to change cloud opacity
                 }
-            
+        
                 // Initial call to add the Cloud Coverage Tile Layer
                 addCloudLayer();
-            
+        
                 // Time interval in minutes
                 const intervalMinutes = 10;
                 const intervalMilliseconds = intervalMinutes * 60 * 1000;
-            
+        
                 // Set interval to update the layer every 10 minutes
                 setInterval(addCloudLayer, intervalMilliseconds);
-            
+        
                 // Add event listener for geocoder search completion
                 viewer.geocoder.viewModel.search.beforeExecute.addEventListener(function(e) {
                     e.cancel = true;
@@ -341,7 +341,7 @@
                             var center = Cesium.Ellipsoid.WGS84.cartesianToCartographic(destination);
                             var longitude = Cesium.Math.toDegrees(center.longitude);
                             var latitude = Cesium.Math.toDegrees(center.latitude);
-            
+        
                             // Fly to the location with a tilted 3D view
                             viewer.camera.flyTo({
                                 destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, 1000),
@@ -355,7 +355,7 @@
                         }
                     });
                 });
-        
+    
                 // Add WMS Layer
                 var wmsImageryProvider = new Cesium.WebMapServiceImageryProvider({
                     url : 'http://your-geoserver-url/geoserver/ows',
@@ -366,27 +366,8 @@
                         format : 'image/png'
                     }
                 });
+    
                 viewer.imageryLayers.addImageryProvider(wmsImageryProvider);
-
-                // Function to update the night overlay based on the time of day
-                function updateNightOverlay() {
-                    var now = new Date();
-                    var hours = now.getUTCHours();
-                    var overlay = document.getElementById('nightOverlay');
-                    var opacity = 0;
-
-                    // Calculate opacity based on time of day
-                    if (hours >= 18 || hours < 6) { // Simulate night time (6 PM to 6 AM)
-                        opacity = Math.min((hours - 18 + 12) / 12, 1); // Fade in from 6 PM to 6 AM
-                    }
-
-                    overlay.style.background = 'rgba(0, 0, 0, ' + opacity + ')';
-                }
-
-                // Initial call to update the night overlay
-                updateNightOverlay();
-                // Update every 10 minutes
-                setInterval(updateNightOverlay, 10 * 60 * 1000);
         
             } else {
                 console.error('Cesium failed to load');
