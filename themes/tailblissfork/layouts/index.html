@@ -357,17 +357,21 @@
                 });
     
                 // Add WMS Layer
-                var wmsImageryProvider = new Cesium.WebMapServiceImageryProvider({
-                    url : 'http://localhost:8080/geoserver/ows',
-                    layers : 'ne:countries',
-                    parameters : {
-                        service : 'WMS',
-                        version : '1.1.1',
-                        format : 'image/png'
-                    }
-                });
-    
-                viewer.imageryLayers.addImageryProvider(wmsImageryProvider);
+                var viewer = new Cesium.Viewer('cesiumContainer', {
+    imageryProvider: new Cesium.WebMapServiceImageryProvider({
+        url: 'http://localhost:8080/geoserver/ows?',
+        layers: 'ne:countries',
+        parameters: {
+            service: 'WMS',
+            version: '1.1.1',
+            request: 'GetMap',
+            styles: '',
+            format: 'image/png',
+            srs: 'EPSG:4326'
+        }
+    }),
+    baseLayerPicker: false
+});
     
                 // Add Nighttime Imagery Layer
                 var nightImageryProvider = new Cesium.UrlTemplateImageryProvider({
