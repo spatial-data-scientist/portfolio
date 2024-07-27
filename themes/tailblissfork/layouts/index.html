@@ -277,7 +277,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             if (typeof Cesium !== 'undefined') {
                 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYmI2Y2RmYy00ZjlkLTQ1NDEtYTdiOS1iZmUyMDA0YjlhMTkiLCJpZCI6MjI3ODkyLCJpYXQiOjE3MjA3MjU2NTV9.ZkTdcGcJIVoMh1SZulxhAUWx_C-ydOeXxaoxq55Qzeg';
-    
+        
                 var viewer = new Cesium.Viewer('cesiumContainer', {
                     terrainProvider: Cesium.createWorldTerrain(),
                     scene3DOnly: true,
@@ -358,7 +358,7 @@
     
                 // Add WMS Layer
                 var wmsImageryProvider = new Cesium.WebMapServiceImageryProvider({
-                    url : 'http://localhost:8080/geoserver/ows',
+                    url : 'http://your-geoserver-url/geoserver/ows',
                     layers : 'ne:countries',
                     parameters : {
                         service : 'WMS',
@@ -381,7 +381,6 @@
             }
         });
     </script>
-    
     
     
     
