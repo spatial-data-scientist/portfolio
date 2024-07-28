@@ -55,12 +55,12 @@ params:
   disable_stay_uptodate: false
 
   p1:
-    heading: "The mission"
+    heading: "My mission"
     image: "images/pages/our-mission.png"
     content:
       - text: "My passion lies in merging technical solutions with strategy-driven approaches for supporting diverse ecosystem services and ecosystem functions."
       - text: "The interactive 3D Earth visualization above was created using CesiumJS, Cesium Ion  and Geoserver WMS. Additionally, cloud coverage updates every ten minutes based on the OpenWeatherMap."
-      - text: ""My background in landscape architecture, combined with expertise in GIS and remote sensing, enhances my approach to spatial planning and analytics. This interdisciplinary knowledge ensures detailed and actionable insights for informed decision-making, integrating complex geospatial data into comprehensive planning solutions"
+      - text: "My background in landscape architecture, combined with expertise in GIS and remote sensing, enhances my approach to spatial planning and analytics. This interdisciplinary knowledge ensures detailed and actionable insights for informed decision-making, integrating complex geospatial data into comprehensive planning solutions."
   p2:
     heading: "Just in time for Hacktoberfest with JIT Tailwind."
     image: "images/pages/hacktoberfest.jpg"
@@ -69,7 +69,7 @@ params:
   p3:
     heading: "Tech stack"
     content:
-      - text: "My tech stack"
+      - text: "I specialize in leveraging GIS and remote sensing for advanced spatial analytics. With Python and R, I conduct in-depth data analysis and apply machine learning to derive actionable insights. PostgreSQL with PostGIS handles the management and querying of complex spatial datasets, while JavaScript enables the development of interactive analytical tools. Additionally, I use AutoCAD for precise technical drawings and Adobe Creative Suite (Illustrator, InDesign, Photoshop, Premiere Pro) to create detailed visualizations and integrate analytical results into comprehensive reports."
     links:
       - text: Meet our investors and advisors
         url: "#"
@@ -89,7 +89,7 @@ params:
   p5:
     heading: "Stay Up to Date"
     content:
-      - text: "I specialize in leveraging GIS and remote sensing for advanced spatial analytics. With Python and R, I conduct in-depth data analysis and apply machine learning to derive actionable insights. PostgreSQL with PostGIS handles the management and querying of complex spatial datasets, while JavaScript enables the development of interactive analytical tools. Additionally, I use AutoCAD for precise technical drawings and Adobe Creative Suite (Illustrator, InDesign, Photoshop, Premiere Pro) to create detailed visualizations and integrate analytical results into comprehensive reports."
+      - text: "Sagittis scelerisque nulla cursus in enim consectetur quam. Dictum urna sed consectetur neque tristique pellentesque."
     action: "#"
     label: "Email address"
     placeholder: "Enter your email"
