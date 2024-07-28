@@ -329,7 +329,7 @@
                     var cloudLayer = viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
                         url: `https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${apiKey}`
                     }));
-                    cloudLayer.alpha = 0.5; // Adjust this value between 0 and 1 to change cloud opacity
+                    cloudLayer.alpha = 0.8; // Adjust this value between 0 and 1 to change cloud opacity
                 }
     
                 // Initial call to add the Cloud Coverage Tile Layer
