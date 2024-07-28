@@ -390,29 +390,47 @@
                 var nightLayer = viewer.imageryLayers.addImageryProvider(nightImageryProvider);
                 nightLayer.alpha = 0.7; // Adjust alpha value to blend the nighttime imagery as needed
         
-                // Add custom fullscreen functionality
-viewer.fullscreenButton.viewModel.command.addEventListener(function() {
-    var cesiumContainer = document.getElementById('cesiumContainer');
-    if (!document.fullscreenElement) {
-        if (cesiumContainer.requestFullscreen) {
-            cesiumContainer.requestFullscreen();
-        } else if (cesiumContainer.mozRequestFullScreen) { // Firefox
-            cesiumContainer.mozRequestFullScreen();
-        } else if (cesiumContainer.webkitRequestFullscreen) { // Chrome, Safari and Opera
-            cesiumContainer.webkitRequestFullscreen();
-        } else if (cesiumContainer.msRequestFullscreen) { // IE/Edge
-            cesiumContainer.msRequestFullscreen();
-        }
+                 // Custom fullscreen handling
+        viewer.fullscreenButton.viewModel.toggled.addEventListener(function(isFullscreen) {
+            var cesiumContainer = document.getElementById('cesiumContainer');
+            if (isFullscreen) {
+                if (cesiumContainer.requestFullscreen) {
+                    cesiumContainer.requestFullscreen();
+                } else if (cesiumContainer.mozRequestFullScreen) { // Firefox
+                    cesiumContainer.mozRequestFullScreen();
+                } else if (cesiumContainer.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                    cesiumContainer.webkitRequestFullscreen();
+                } else if (cesiumContainer.msRequestFullscreen) { // IE/Edge
+                    cesiumContainer.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { // Firefox
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { // IE/Edge
+                    document.msExitFullscreen();
+                }
+            }
+        });
+
+        // Handle fullscreen change events
+        document.addEventListener('fullscreenchange', function() {
+            viewer.resize();
+        });
+        document.addEventListener('mozfullscreenchange', function() {
+            viewer.resize();
+        });
+        document.addEventListener('webkitfullscreenchange', function() {
+            viewer.resize();
+        });
+        document.addEventListener('msfullscreenchange', function() {
+            viewer.resize();
+        });
     } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) { // Firefox
-            document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { // IE/Edge
-            document.msExitFullscreen();
-        }
+        console.error('Cesium failed to load');
     }
 });
         
