@@ -280,6 +280,8 @@
             
                 var viewer = new Cesium.Viewer('cesiumContainer', {
                     terrainProvider: Cesium.createWorldTerrain(),
+                    requestWaterMask: true,
+                    requestVertexNormals: true,
                     scene3DOnly: false, // Allow for 2D and Columbus view modes
                     baseLayerPicker: true,
                     geocoder: true,
