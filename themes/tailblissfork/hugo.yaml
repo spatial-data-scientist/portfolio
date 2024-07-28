@@ -75,7 +75,7 @@ params:
         url: "#"
     logos:
       - identifier: a
-        image: "images/global/sample-logo.svg"
+        image: "images/global/nice.svg"
         alt: "a"
       - identifier: b
       - identifier: c
