@@ -55,12 +55,12 @@ params:
   disable_stay_uptodate: false
 
   p1:
-    heading: "My mission"
+    heading: "The mission"
     image: "images/pages/our-mission.png"
     content:
       - text: "My passion lies in merging technical solutions with strategy-driven approaches for supporting diverse ecosystem services and ecosystem functions."
       - text: "The interactive 3D Earth visualization above was created using CesiumJS, Cesium Ion  and Geoserver WMS. Additionally, cloud coverage updates every ten minutes based on the OpenWeatherMap."
-      - text: "Rhoncus nisl, libero egestas diam fermentum dui. At quis tincidunt vel ultricies. Vulputate aliquet velit faucibus semper. Pellentesque in venenatis vestibulum consectetur nibh id. In id ut tempus egestas. Enim sit aliquam nec, a. Morbi enim fermentum lacus in. Viverra."
+      - text: ""My background in landscape architecture, combined with expertise in GIS and remote sensing, enhances my approach to spatial planning and analytics. This interdisciplinary knowledge ensures detailed and actionable insights for informed decision-making, integrating complex geospatial data into comprehensive planning solutions"
   p2:
     heading: "Just in time for Hacktoberfest with JIT Tailwind."
     image: "images/pages/hacktoberfest.jpg"
