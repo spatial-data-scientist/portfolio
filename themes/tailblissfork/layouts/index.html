@@ -390,18 +390,31 @@
                 nightLayer.alpha = 0.7; // Adjust alpha value to blend the nighttime imagery as needed
         
                 // Add custom fullscreen functionality
-                viewer._cesiumWidget.fullscreenButton.addEventListener('click', function() {
-                    var container = document.getElementById('cesiumContainer');
-                    if (!document.fullscreenElement) {
-                        container.requestFullscreen().catch(err => {
-                            console.error("Failed to enter fullscreen mode: ", err);
-                        });
-                    } else {
-                        document.exitFullscreen().catch(err => {
-                            console.error("Failed to exit fullscreen mode: ", err);
-                        });
-                    }
-                });
+                // Replace the existing fullscreen button event listener with this:
+viewer.fullscreenButton.viewModel.command.addEventListener(function() {
+    var cesiumContainer = document.getElementById('cesiumContainer');
+    if (!document.fullscreenElement) {
+        if (cesiumContainer.requestFullscreen) {
+            cesiumContainer.requestFullscreen();
+        } else if (cesiumContainer.mozRequestFullScreen) { // Firefox
+            cesiumContainer.mozRequestFullScreen();
+        } else if (cesiumContainer.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            cesiumContainer.webkitRequestFullscreen();
+        } else if (cesiumContainer.msRequestFullscreen) { // IE/Edge
+            cesiumContainer.msRequestFullscreen();
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+            document.msExitFullscreen();
+        }
+    }
+});
         
             } else {
                 console.error('Cesium failed to load');
