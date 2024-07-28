@@ -59,7 +59,7 @@ params:
     image: "images/pages/our-mission.png"
     content:
       - text: "My passion lies in merging technical solutions with strategy-driven approaches for supporting diverse ecosystem services and ecosystem functions."
-      - text: "Sollicitudin tristique eros erat odio sed vitae, consequat turpis elementum. Lorem nibh vel, eget pretium arcu vitae. Eros eu viverra donec ut volutpat donec laoreet quam urna. Sollicitudin tristique eroserat odio sed vitae, consequat turpis elementum. Lorem nibh vel, eget pretium arcu vitae. Eros eu viverra donec ut volutpat donec laoreet quam urna."
+      - text: "The interactive 3D Earth visualization above was created using CesiumJS, Cesium Ion  and Geoserver WMS. Additionally, cloud coverage updates every ten minutes based on the OpenWeatherMap."
       - text: "Rhoncus nisl, libero egestas diam fermentum dui. At quis tincidunt vel ultricies. Vulputate aliquet velit faucibus semper. Pellentesque in venenatis vestibulum consectetur nibh id. In id ut tempus egestas. Enim sit aliquam nec, a. Morbi enim fermentum lacus in. Viverra."
   p2:
     heading: "Just in time for Hacktoberfest with JIT Tailwind."

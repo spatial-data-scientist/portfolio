@@ -383,12 +383,6 @@
         
                 viewer.imageryLayers.addImageryProvider(wmsImageryProvider);
         
-                // Add Nighttime Imagery Layer
-                var nightImageryProvider = new Cesium.UrlTemplateImageryProvider({
-                    url: 'https://tileserver.nasa.gov/blackmarble/{z}/{x}/{y}.png'
-                });
-                var nightLayer = viewer.imageryLayers.addImageryProvider(nightImageryProvider);
-                nightLayer.alpha = 0.7; // Adjust alpha value to blend the nighttime imagery as needed
         
                 // Custom fullscreen handling
         viewer.fullscreenButton.viewModel.toggled.addEventListener(function(isFullscreen) {
