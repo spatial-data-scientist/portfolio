@@ -390,7 +390,7 @@
                 var nightLayer = viewer.imageryLayers.addImageryProvider(nightImageryProvider);
                 nightLayer.alpha = 0.7; // Adjust alpha value to blend the nighttime imagery as needed
         
-                 // Custom fullscreen handling
+                // Custom fullscreen handling
         viewer.fullscreenButton.viewModel.toggled.addEventListener(function(isFullscreen) {
             var cesiumContainer = document.getElementById('cesiumContainer');
             if (isFullscreen) {
@@ -429,10 +429,6 @@
         document.addEventListener('msfullscreenchange', function() {
             viewer.resize();
         });
-    } else {
-        console.error('Cesium failed to load');
-    }
-});
         
             } else {
                 console.error('Cesium failed to load');
