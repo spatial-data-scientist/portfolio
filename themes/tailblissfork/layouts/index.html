@@ -285,7 +285,8 @@
                     geocoder: true,
                     fullscreenButton: true,
                     sceneModePicker: true, // Enable 2D and Columbus view
-                    selectionIndicator: true // Enable selection indicator
+                    selectionIndicator: true, // Enable selection indicator
+                    fullscreenElement: 'cesiumContainer'
                 });
         
                 // Enable depth testing so things behind the terrain disappear
@@ -390,7 +391,6 @@
                 nightLayer.alpha = 0.7; // Adjust alpha value to blend the nighttime imagery as needed
         
                 // Add custom fullscreen functionality
-                // Replace the existing fullscreen button event listener with this:
 viewer.fullscreenButton.viewModel.command.addEventListener(function() {
     var cesiumContainer = document.getElementById('cesiumContainer');
     if (!document.fullscreenElement) {
